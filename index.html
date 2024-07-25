@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-todo</title>
+    <script src="petite-vue.iife.js" defer init></script>
+    <!-- <script src="cdn.tailwindcss.com.js"></script> -->
+    <style>
+        body,input,button{
+            font-size:16pt;
+            font-family:sans-serif;
+        }
+    </style>
+</head>
+
+<body class="h-full bg-yellow-100">
+    <div id="todoApp" v-scope="{tasks:[],newTask:''}">
+        <header><h1>K-todo</h1></header>
+        <main>
+            <section>
+                <div>
+                   <input v-model="newTask"/>
+                   <button :disabled="!newTask" @click="tasks.push(newTask);newTask = ''">+</button>
+                   <ul>
+                    <div v-for="task in tasks"><button @click="tasks.splice(tasks.indexOf(task),1)">&times;</button> {{task}} </div>
+                   </ul>
+                </div>
+            </section>
+        </main>
+        <footer><small>By kybueno<sup>&copy;</sup> All Rights Reserved 2024</small></footer>
+    </div>
+</body>
+
+</html>
