@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontacts</title>
+    <script src="cdn.tailwindcss.com.js"></script>
+    <script src="petite-vue.iife.js" init defer></script>
+
+</head>
+<body v-scope="{ personas: [
+    {name:'Karen',phone:59214949},
+    {name:'Liah',phone:58314949},
+    {name:'Parse',phone:58314949},
+    {name:'Mom',phone:58314949},
+    {name:'Carlos',phone:55062672},
+    
+    
+    
+    ] }" class="font-sans text-gray-700 p-8">
+    <section class="flex flex-col gap-4">
+        <a :href="'tel:'+ persona.phone" target="_blank" v-for="persona in personas" class="bg-gray-200 hover:scale-110 transition-all active:scale-90 py-4 px-10  rounded-full flex justify-between items-center">
+            <div>
+                <strong class="text-2xl">{{persona.name}}</strong>
+                <p class="text-gray-500">{{persona.phone}}</p>
+            </div>
+            <div class="text-2xl">📞</div>
+        </a>
+
+    </section>
+    
+</body>
+</html>
