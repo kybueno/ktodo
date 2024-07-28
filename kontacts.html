@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kompra</title>
+    <script src="cdn.tailwindcss.com.js"></script>
+    <script src="petite-vue.iife.js" init defer></script>
+
+</head>
+<body v-scope="{ persons: [
+    {name:'Liah',phone:58314949,img:'images/fulana.webp'},
+    {name:'Parse',phone:58314949,img:'images/yoselin.webp'},
+    {name:'Mom',phone:58314949,img:'images/yoselin.webp'},
+    {name:'Carlos',phone:55062672,img:'images/dav.webp'},    
+    ],
+packs: [
+    {name:'Paquete de 600 MB',code:'*133*5*1#',details:'+ 700 MB LTE',price: 110,color:'yellow'},
+    {name:'Paquete de 1.5 GB',code:'*133*5*2#',details:'+ 2 GB LTE',price: 250,color:'teal'},
+    {name:'Paquete de 3.5 GB',code:'*133*5*3#',details:'+ 4 GB LTE',price: 500,color:'purple'},
+],
+}" class="font-sans text-gray-950 p-8">
+    <section class="flex flex-col gap-4 text-teal-950">
+        <h1 class="text-4xl strong text-center mb-4">Kompra</h1>
+        <a :href="'tel:'+ pack.code" target="_blank" v-for="pack in packs" class="hover:scale-110 transition-all active:scale-90 p-4  rounded-full flex justify-between items-center  group 
+        " :class="`bg-${pack.color}-100  text-${pack.color}-500 border-b-8 border-${pack.color}-200`">
+            <div class="px-4">
+                <strong class="text-2xl">{{pack.name}}</strong>
+                <p :class="`text-${pack.color}-400 `">{{pack.details}}</p>
+            </div>
+            <img v-if="pack.img" :src="pack.img" class="aspect-square w-16 rounded-full "/>
+
+            <div v-else class="text-2xl flex items-center justify-center  rounded-full aspect-square font-black size-16 overflow-hidden -rotate-[20deg] transition-all " :class="`text-${pack.color}-400 bg-${pack.color}-200`">
+                 
+                {{pack.price}}
+            </div>
+            
+            
+        </a>
+
+    </section>
+    
+</body>
+</html>

@@ -24,7 +24,7 @@
                    <input v-model="newTask"/>
                    <button :disabled="!newTask" @click="tasks.push(newTask);newTask = ''">+</button>
                    <ul>
-                    <div v-for="task in tasks"><button @click="tasks.splice(tasks.indexOf(task),1)">&times;</button> {{task}} </div>
+                    <div v-for="task in tasks"> {{task}} </div>
                    </ul>
                 </div>
             </section>
