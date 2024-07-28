@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontacts</title>
+    <title>Kompra</title>
     <script src="cdn.tailwindcss.com.js"></script>
     <script src="petite-vue.iife.js" init defer></script>
 
@@ -21,7 +21,7 @@ packs: [
 ],
 }" class="font-sans text-gray-950 p-8">
     <section class="flex flex-col gap-4 text-teal-950">
-        <h1 class="text-4xl strong text-center mb-4">Paquetes</h1>
+        <h1 class="text-4xl strong text-center mb-4">Kompra</h1>
         <a :href="'tel:'+ pack.code" target="_blank" v-for="pack in packs" class="hover:scale-110 transition-all active:scale-90 p-4  rounded-full flex justify-between items-center  group 
         " :class="`bg-${pack.color}-100  text-${pack.color}-500 border-b-8 border-${pack.color}-200`">
             <div class="px-4">
