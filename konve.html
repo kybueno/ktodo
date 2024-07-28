@@ -4,12 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="petite-vue.iife.js" defer init></script>
+    <script src="cdn.tailwindcss.com.js"></script>
+
     <title>Konve</title>
 </head>
-<body >
-<section v-scope="{ personas: [{name:'Karen',phone:59214949},{name:'Liah',phone:58314949}] }">
+<body class="bg-gray-700">
+<section v-scope="{ lessons: [
+    {img:'⋆' , color:'purple' , status:'legend'},
+    {img:'⋆' , color:'purple' , status:'done'},
+    {img:'⋆' , color:'purple' , status:'legend'},
+    {img:'⋆' , color:'purple' , status:'blocked'},
+    {img:'⋆' , color:'green' , status:'blocked'},
+    {img:'⋆' , color:'green' , status:'blocked'},
+    
+    ] }">
 
-    <h2 v-for="persona in personas">😃 {{persona.name}} : {{persona.phone}}</h2>
+    <div class="flex flex-col gap-4 items-center bg-gray-700 p-12">
+        <button v-for="{img,color,status} in lessons" :class="` flex items-center justify-center rounded-full size-24 text-9xl text-white bg-${color}-500 border-b-8 border-${color}-600 active:translate-y-2 transition-all ${status=='legend'?'bg-yellow-400 border-yellow-500': status=='blocked'&&'bg-gray-400'}`">{{img}}</button>
+    </div>
 </section>
 </body>
 </html>
