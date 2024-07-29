@@ -1,27 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="petite-vue.iife.js" defer init></script>
     <script src="cdn.tailwindcss.com.js"></script>
 
     <title>Konve</title>
-</head>
-<body class="bg-gray-700">
-<section v-scope="{ lessons: [
-    {img:'⋆' , color:'purple' , status:'legend'},
-    {img:'⋆' , color:'purple' , status:'done'},
-    {img:'⋆' , color:'purple' , status:'legend'},
-    {img:'⋆' , color:'purple' , status:'blocked'},
-    {img:'⋆' , color:'green' , status:'blocked'},
-    {img:'⋆' , color:'green' , status:'blocked'},
-    
-    ] }">
+  </head>
 
-    <div class="flex flex-col gap-4 items-center bg-gray-700 p-12">
-        <button v-for="{img,color,status} in lessons" :class="` flex items-center justify-center rounded-full size-24 text-9xl text-white bg-${color}-500 border-b-8 border-${color}-600 active:translate-y-2 transition-all ${status=='legend'?'bg-yellow-400 border-yellow-500': status=='blocked'&&'bg-gray-400'}`">{{img}}</button>
+  <body class="bg-gray-800 text-gray-100 py-24" v-scope="{user:{img:'images/kybueno.webp',name:'Karen'}}">
+<header class="fixed top-0 right-0 left-0 z-20">
+    <nav class="flex justify-between gap-4 p-3 px-6 backdrop-blur-xl ">
+        <div></div>
+        <div class="flex items-center gap-4">
+            <strong>{{user.name}}</strong>
+            <img :src="user.img" class="outline outline-3 rounded-full size-14"/>
+        </div>
+    </nav>
+</header>
+
+    <section
+      v-scope="{unit:'1',title:'Presentarse',lessons: [
+    {icon:'⋆' ,img:'images/duo-star.svg', color:'purple', status:'legend'},
+    {icon:'⋆' ,img:'images/duo-star.svg', color:'purple', status:'done'},
+    {icon:'⋆' ,img:'images/duo-star.svg', color:'purple', status:'legend'},
+    {icon:'⋆' ,img:'images/duo-star.svg', color:'purple', status:'done'},
+    {icon:'⋆' ,img:'images/duo-star.svg', color:'purple', status:'done'},
+    {icon:'⋆' ,img:'images/duo-star.svg', color:'green', status:'done'},
+    {icon:'⋆' ,img:'images/duo-star.svg', color:'green', status:'pending'},
+    {icon:'⋆' ,img:'images/duo-star.svg', color:'green', status:'blocked'},
+    {icon:'⋆' ,img:'images/duo-star.svg', color:'green', status:'blocked'},
+    
+    ] }"
+    >
+    <div class="bg-gray-700 p-4 text-xl flex justify-between">
+        <div class="overflow-hidden">  
+        <h2 class="font-bold text-2xl">Unidad {{unit}}</h2>
+        <p>{{title}}</p>
+        </div>
+        <button class="font-black text-4xl px-3 border-4 border-b-8 rounded-2xl border-gray-800">+</button>
     </div>
-</section>
-</body>
+      <div class="flex flex-col gap-12 items-center p-12">
+        <button
+          v-for="{icon,img,color,status} in lessons"
+            :disabled="status=='blocked'"
+            class="outline-none focus:brightness-110 relative border-gray-700 flex items-center justify-center h-[80px] w-24 text-9xl border-8 text-white transition-all overflow-hidden rounded-[50%] group disabled:opacity-50 hover:brightness-[1.15] active:translate-y-2  shadow-[0_10px_0]"
+            :class="`${
+                status=='legend' ? 'bg-gradient-to-br from-yellow-300 to-yellow-400 border-yellow-400 shadow-yellow-600':
+                status=='blocked'? 'bg-gray-600 border-gray-600 shadow-gray-700 pointer-events-none'
+                                 : `bg-${color}-500 border-${color}-500 shadow-${color}-600`
+                } focus:ring ring-${color}-500`"
+        >
+        <div class="absolute size-[90%] inset-0 rounded-lg -rotate-45 -translate-y-6 -translate-x-6"  :class="`${status=='legend'?'bg-yellow-200': status=='blocked'?'bg-none':`bg-${color}-400`}`"></div>
+        <div class="absolute w-full inset-0 rounded -rotate-45 h-4 translate-y-8"
+            :class="`${status=='legend' ? 'bg-yellow-200' : status=='blocked' ? 'bg-none' : `bg-${color}-400`}`"></div>
+        <img v-if="img" :src="img" class="size-12" :class="{'brightness-[5]':status!='blocked',
+    'brightness-150':status=='blocked'}"/>
+          <span v-else class="z-10">{{icon}}</span>
+        </button>
+      </div>
+    </section>
+  </body>
 </html>
